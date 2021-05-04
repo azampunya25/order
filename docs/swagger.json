@@ -1,0 +1,210 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "\"ORDER\"",
+        "contact": {},
+        "license": {},
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/orders",
+    "paths": {
+        "/": {
+            "get": {
+                "description": "getting all Order",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Getting all Order",
+                "operationId": "get-Order",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Request"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/:order_id": {
+            "delete": {
+                "description": "Delete Order",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Delete Order",
+                "operationId": "Delete-Order",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Order ID",
+                        "name": "order_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Request"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/create": {
+            "post": {
+                "description": "creating a new order",
+                "consumes": [
+                    "application/json",
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Create order",
+                "operationId": "create-order",
+                "parameters": [
+                    {
+                        "description": "request body json",
+                        "name": "requestbody",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Request"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Request"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/update": {
+            "put": {
+                "description": "Update order",
+                "consumes": [
+                    "application/json",
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Update order",
+                "operationId": "update-order",
+                "parameters": [
+                    {
+                        "description": "request body json",
+                        "name": "requestbody",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Request"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Request"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.ErrorResponse": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "integer"
+                }
+            }
+        },
+        "models.Items": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "itemCode": {
+                    "type": "string"
+                },
+                "itemId": {
+                    "type": "integer"
+                },
+                "orderId": {
+                    "type": "integer"
+                },
+                "quantity": {
+                    "type": "integer"
+                }
+            }
+        },
+        "models.Request": {
+            "type": "object",
+            "properties": {
+                "customerName": {
+                    "type": "string"
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Items"
+                    }
+                },
+                "orderAt": {
+                    "type": "string"
+                },
+                "orderId": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}
